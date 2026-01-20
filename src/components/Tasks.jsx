@@ -17,12 +17,13 @@ function Tasks({ tasks, onTaskClick, onDeleteTaskClick }) {
         <li key={task.id} className="flex gap-2">
           <button
             onClick={() => onTaskClick(task.id)}
-            className={`bg-slate-400 text-left w-full flex items-center gap-2 text-white p-2 rounded-md ${
+            className={`bg-slate-400 text-left w-full flex items-start gap-2 text-white p-2 rounded-md ${
               task.isCompleted && "line-through"
             }`}
           >
-            {task.isCompleted ? "✅ " : null}
-            {task.title}
+            {task.isCompleted && <span>✅</span>}
+
+            <span className="flex-1 break-words min-w-0">{task.title}</span>
           </button>
           <Button onClick={() => onSeeDetailsClick(task)}>
             <ChevronRightIcon />
