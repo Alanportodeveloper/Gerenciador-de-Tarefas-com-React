@@ -13,22 +13,17 @@ function App() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  useEffect(() => {
-    // Chamar a API
-    // SE QUISER PODE CHAMAR UMA API PRA PEGAR AS TAREFAS
-    // fetchTasks(data);
-  }, []);
-
   function onTaskClick(taskId) {
-    const newTasks = tasks.map((task) => {
-      //Preciso atualizar essa tarefa
-      if (task.id === taskId) {
-        return { ...task, isCompleted: !task.isCompleted };
-      }
+    const newTasks = tasks.map((task) =>
+      task.id === taskId ? { ...task, isCompleted: !task.isCompleted } : task,
+    );
+    setTasks(newTasks);
+  }
 
-      //Não preciso atualizar essa tarefa
-      return task;
-    });
+  function onTaskEdit(taskId, newTitle) {
+    const newTasks = tasks.map((task) =>
+      task.id === taskId ? { ...task, title: newTitle } : task,
+    );
     setTasks(newTasks);
   }
 
@@ -49,12 +44,15 @@ function App() {
 
   return (
     <div className="w-screen h-screen bg-slate-500 flex justify-center p-6">
-      <div className="w-full max-w-[500px] space-y4">
+      <div className="w-full max-w-[500px] space-y-4">
         <Title>Gerenciador de Tarefas</Title>
+
         <AddTask onAddTaskSubmit={onAddTaskSubmit} />
+
         <Tasks
           tasks={tasks}
           onTaskClick={onTaskClick}
+          onTaskEdit={onTaskEdit}
           onDeleteTaskClick={onDeleteTaskClick}
         />
       </div>
