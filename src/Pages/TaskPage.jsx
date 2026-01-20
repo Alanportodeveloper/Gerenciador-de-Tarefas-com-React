@@ -5,7 +5,7 @@ import Title from "../components/Title";
 
 function TaskPage() {
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const title = searchParams.get("title");
   const description = searchParams.get("description");
   return (

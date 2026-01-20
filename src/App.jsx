@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import AddTask from "./components/AddTask";
 import Tasks from "./components/Tasks";
 import { v4 } from "uuid";
-import { data } from "autoprefixer";
 import Title from "./components/Title";
 
 function App() {
   const [tasks, setTasks] = useState(
-    JSON.parse(localStorage.getItem("tasks")) || []
+    JSON.parse(localStorage.getItem("tasks")) || [],
   );
 
   useEffect(() => {
@@ -16,18 +15,6 @@ function App() {
 
   useEffect(() => {
     // Chamar a API
-    const fetchTasks = async () => {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/todos?_limit=10",
-        {
-          method: "GET",
-        }
-      );
-      // Pegar os dados que ela retorna
-      const data = await response.json();
-      // Armazenar/ Persistir esses dados no state
-      setTasks(data);
-    };
     // SE QUISER PODE CHAMAR UMA API PRA PEGAR AS TAREFAS
     // fetchTasks(data);
   }, []);
