@@ -36,18 +36,17 @@ function TaskPage() {
     );
 
     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-
     setIsEditing(false);
   }
 
   return (
-    <div className="w-screen min-h-screen bg-slate-500 flex justify-center p-6">
+    <div className="w-full min-h-screen bg-slate-500 flex justify-center p-4 sm:p-6">
       <div className="w-full max-w-[500px]">
         {/* HEADER */}
         <div className="relative flex items-center justify-center mb-6">
           <button
             onClick={() => navigate(-1)}
-            className="absolute left-0 text-white border-collapse rounded-md p-2 hover:bg-slate-700 transition-colors"
+            className="absolute left-0 text-white rounded-md p-2 hover:bg-slate-700 transition-colors"
           >
             <ChevronLeftIcon />
           </button>
@@ -55,36 +54,38 @@ function TaskPage() {
           <Title>Detalhes da Tarefa</Title>
         </div>
 
-        {/* CARD + BOTÃO */}
+        {/* CARD */}
         <div className="relative">
+          {/* BOTÃO EDITAR (responsivo) */}
           {!isEditing && (
             <button
               onClick={() => setIsEditing(true)}
-              className="absolute -right-12 top-0 bg-slate-600  text-white border-collapse rounded-md p-2 hover:bg-slate-700 transition-colors"
+              className="absolute right-2 top-2 sm:-right-12 sm:top-0 bg-slate-600 text-white rounded-md p-2 hover:bg-slate-700 transition-colors"
             >
-              <PencilIcon size={25} />
+              <PencilIcon size={22} />
             </button>
           )}
 
-          <div className="bg-slate-200 rounded-md p-4 shadow">
+          {/* CARD CONTENT */}
+          <div className="bg-slate-200 rounded-md p-4 sm:p-6 shadow">
             {isEditing ? (
               <div className="space-y-4">
                 <input
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="w-full p-2 rounded-md outline-none border border-slate-300 text-slate-700 text-center"
+                  className="w-full p-2 rounded-md border border-slate-300 text-slate-700 text-center"
                 />
 
                 <textarea
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  className="w-full p-2 rounded-md outline-none border border-slate-300 text-slate-700 resize-none h-32 text-center"
+                  className="w-full p-2 rounded-md border border-slate-300 text-slate-700 resize-none h-32 text-center"
                 />
 
                 <button
                   onClick={handleSave}
-                  className="w-full bg-slate-600 hover:bg-slate-700 transition-colors text-white p-2 rounded-md"
+                  className="w-full bg-slate-600 hover:bg-slate-700 text-white p-2 rounded-md"
                 >
                   Salvar edição
                 </button>
@@ -104,4 +105,5 @@ function TaskPage() {
     </div>
   );
 }
+
 export default TaskPage;
