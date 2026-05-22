@@ -23,14 +23,14 @@ function AddTask({ onAddTaskSubmit }) {
           // Verificar se o título e a descrição não estão vazios
           if (title.trim() === "" || description.trim() === "") {
             return alert(
-              "Por favor, preencha o título e a descrição da tarefa."
+              "Por favor, preencha o título e a descrição da tarefa.",
             );
           }
           onAddTaskSubmit(title, description);
           setTitle("");
           setDescription("");
         }}
-        className="bg-slate-500 text-white px-4 py-2 rounded-md font-medium"
+        className="bg-slate-600 hover:bg-slate-700 transition-colors text-white px-4 py-2 rounded-md font-medium"
       >
         Adicionar
       </button>

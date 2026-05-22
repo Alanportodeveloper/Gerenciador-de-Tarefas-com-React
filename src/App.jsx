@@ -15,20 +15,25 @@ function App() {
 
   function onTaskClick(taskId) {
     const newTasks = tasks.map((task) =>
-      task.id === taskId ? { ...task, isCompleted: !task.isCompleted } : task,
+      String(task.id) === String(taskId)
+        ? { ...task, isCompleted: !task.isCompleted }
+        : task,
     );
+
     setTasks(newTasks);
   }
 
-  function onTaskEdit(taskId, newTitle) {
+  function onTaskEdit(taskId, updatedFields) {
     const newTasks = tasks.map((task) =>
-      task.id === taskId ? { ...task, title: newTitle } : task,
+      String(task.id) === String(taskId) ? { ...task, ...updatedFields } : task,
     );
+
     setTasks(newTasks);
   }
 
   function onDeleteTaskClick(taskId) {
-    const newTasks = tasks.filter((task) => task.id !== taskId);
+    const newTasks = tasks.filter((task) => String(task.id) !== String(taskId));
+
     setTasks(newTasks);
   }
 
@@ -39,11 +44,12 @@ function App() {
       description,
       isCompleted: false,
     };
+
     setTasks([...tasks, newTask]);
   }
 
   return (
-    <div className="w-screen h-screen bg-slate-500 flex justify-center p-6">
+    <div className="w-screen min-h-screen bg-slate-500 flex justify-center p-6">
       <div className="w-full max-w-[500px] space-y-4">
         <Title>Gerenciador de Tarefas</Title>
 
@@ -52,7 +58,6 @@ function App() {
         <Tasks
           tasks={tasks}
           onTaskClick={onTaskClick}
-          onTaskEdit={onTaskEdit}
           onDeleteTaskClick={onDeleteTaskClick}
         />
       </div>

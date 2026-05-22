@@ -1,8 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import App from "./App.jsx";
 import TaskPage from "./Pages/TaskPage.jsx";
 
 const router = createBrowserRouter([
@@ -11,7 +12,7 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/task",
+    path: "/task/:id",
     element: <TaskPage />,
   },
 ]);
@@ -19,5 +20,5 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>
+  </StrictMode>,
 );
